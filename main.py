@@ -47,19 +47,19 @@ def register():
             prediction = 'Loan is approved'
         else:
             prediction = 'Loan is not approved'
-        customer = ormCustomer(Gender=form.gender.data,
-                               Married=form.married.data,
-                               Dependents=form.dependents.data,
-                               Education=form.education.data,
-                               Self_Employed=form.self_employed.data,
-                               ApplicantIncome=form.applicant_income.data,
-                               CoapplicantIncome=form.coapplicant_income.data,
-                               LoanAmount=form.loan_amount.data,
-                               Loan_Amount_Term=form.loan_amount_term.data,
-                               Credit_History=form.credit_history.data,
-                               Property_Area=form.property_area.data,
-                               Loan_Status=loan_status_result)
-        db.sqlalchemy_session.add_all([customer])
+        customer = ormCustomer(gender=form.gender.data,
+                               married=form.married.data,
+                               dependents=form.dependents.data,
+                               education=form.education.data,
+                               self_employed=form.self_employed.data,
+                               applicantincome=form.applicant_income.data,
+                               coapplicantincome=form.coapplicant_income.data,
+                               loanamount=form.loan_amount.data,
+                               loan_amount_term=form.loan_amount_term.data,
+                               credit_history=form.credit_history.data,
+                               property_area=form.property_area.data,
+                               loan_status=loan_status_result)
+        db.sqlalchemy_session.add(customer)
         db.sqlalchemy_session.commit()
         flash(f'Your prediction: {prediction}', 'success')
         return redirect(url_for('root'))
