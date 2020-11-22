@@ -1,0 +1,44 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Loan_ID</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Married</th>
+                <th scope="col">Dependents</th>
+                <th scope="col">Education</th>
+                <th scope="col">Self_employed</th>
+                <th scope="col">ApplicantIncome</th>>
+                <th scope="col">CoapplicantIncome</th>>
+                <th scope="col">LoanAmount=</th>>
+                <th scope="col">Loan_Amount_Term</th>>
+                <th scope="col">Credit_History</th>>
+                <th scope="col">Property_Area</th>>
+                <th scope="col">Loan_Status</th>>
+            </tr>
+        </thead>
+        <tr>
+        {% for customer in customers %}
+            <td> {{ customer.Loan_ID }} </td>
+            <td> {{ customer.Gender }} </td>
+            <td> {{ customer.Married }} </td>
+            <td> {{ customer.Dependents }} </td>
+            <td> {{ customer.Education }} </td>
+            <td> {{ customer.Self_Employed }} </td>
+            <td> {{ customer.ApplicantIncome }} </td>
+            <td> {{ customer.CoapplicantIncome }} </td>
+            <td> {{ customer.LoanAmount }} </td>
+            <td> {{ customer.Loan_Amount_Term }} </td>
+            <td> {{ customer.Credit_History }} </td>
+            <td> {{ customer.Property_Area }} </td>
+            <td> {{ customer.Loan_Status }} </td>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+{% endblock content%}

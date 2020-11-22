@@ -1,0 +1,5 @@
+username = 'rsaaukjmthpjsl'
+password = '06ef93531091a32cb44a498a5bbcef7506e69f39625a65154e14959c0b753b0d'
+database = 'd5nqb402oe1ju8'
+host = 'ec2-18-203-7-163.eu-west-1.compute.amazonaws.com'
+port = '5432'
