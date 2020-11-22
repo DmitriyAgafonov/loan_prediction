@@ -25,7 +25,7 @@ app.secret_key = 'development key'
 db = PostgreDb()
 
 def LoanPredictor(predict_list):
-    to_predict = np.array(predict_list).reshape(1, 10)
+    to_predict = np.array(predict_list).reshape(1, 11)
     loaded_model = pickle.load(open("model.pkl", "rb"))
     result = loaded_model.predict(to_predict)
     return result[0]
@@ -40,7 +40,8 @@ def register():
     if form.validate_on_submit():
         to_predict_list = request.form.to_dict()
         to_predict_list = list(to_predict_list.values())
-        to_predict_list = list(map(int, to_predict_list))
+        to_predict_list = to_predict_list[3:-2]
+        #to_predict_list = list(map(int, to_predict_list))
         loan_status_result = LoanPredictor(to_predict_list)
         if int(loan_status_result) == 1:
             prediction = 'Loan is approved'
