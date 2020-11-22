@@ -16,10 +16,10 @@ class PostgreDb(object):
                                         port=port,
                                         database=database)
                 cursor = connection.cursor()
-                query = "select * from customers;"
-                print(cursor.execute(query))
-                #db_version = cursor.fetchone()
-                #print("New connection to {} created".format(db_version[0]))
+                query = "select version();"
+                cursor.execute(query)
+                db_version = cursor.fetchone()
+                print("New connection to {} created".format(db_version[0]))
 
                 engine = create_engine(
                     f'postgresql://{username}:{password}@{host}:{port}/{database}',
