@@ -64,9 +64,12 @@ def register():
         if int(loan_status_result) == 1:
             loan_status_result = 'Yes'
             prediction = 'Loan is approved'
+            flash(f'Your prediction: {prediction}', 'success')
         else:
             loan_status_result = 'No'
             prediction = 'Loan is not approved'
+            flash(f'Your prediction: {prediction}', 'danger')
+
         customer = ormCustomer(gender=form.gender.data,
                                married=form.married.data,
                                dependents=form.dependents.data,
@@ -81,7 +84,6 @@ def register():
                                loan_status=loan_status_result)
         db.sqlalchemy_session.add(customer)
         db.sqlalchemy_session.commit()
-        flash(f'Your prediction: {prediction}', 'success')
         return redirect(url_for('root'))
     return render_template('registration.html', form=form)
 
