@@ -23,19 +23,19 @@
         </thead>
         <tr>
         {% for customer in customers %}
-            <td> {{ customer.Loan_ID }} </td>
-            <td> {{ customer.Gender }} </td>
-            <td> {{ customer.Married }} </td>
-            <td> {{ customer.Dependents }} </td>
-            <td> {{ customer.Education }} </td>
-            <td> {{ customer.Self_Employed }} </td>
-            <td> {{ customer.ApplicantIncome }} </td>
-            <td> {{ customer.CoapplicantIncome }} </td>
-            <td> {{ customer.LoanAmount }} </td>
-            <td> {{ customer.Loan_Amount_Term }} </td>
-            <td> {{ customer.Credit_History }} </td>
-            <td> {{ customer.Property_Area }} </td>
-            <td> {{ customer.Loan_Status }} </td>
+            <td> {{ customer.loan_id }} </td>
+            <td> {{ customer.gender }} </td>
+            <td> {{ customer.married }} </td>
+            <td> {{ customer.dependents }} </td>
+            <td> {{ customer.education }} </td>
+            <td> {{ customer.self_employed }} </td>
+            <td> {{ customer.applicantincome }} </td>
+            <td> {{ customer.coapplicantincome }} </td>
+            <td> {{ customer.loanamount }} </td>
+            <td> {{ customer.loan_amount_term }} </td>
+            <td> {{ customer.credit_history }} </td>
+            <td> {{ customer.property_area }} </td>
+            <td> {{ customer.loan_status }} </td>
         </tr>
         {% endfor %}
 
