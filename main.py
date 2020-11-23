@@ -24,11 +24,31 @@ app = Flask(__name__)
 app.secret_key = 'development key'
 db = PostgreDb()
 
-def LoanPredictor(predict_list):
-    to_predict = np.array(predict_list).reshape(1, 11)
-    loaded_model = pickle.load(open("model.pkl", "rb"))
-    result = loaded_model.predict(to_predict)
-    return result[0]
+def FittingData(user_data):
+    with open('fitted_data.pkl', 'rb') as f:
+        fitted_ohe_loaded, logreg_clf_loaded = pickle.load(f)
+    cols = ['Dependents', 'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount', 'Loan_Amount_Term', 'Property_Area',
+            'Gender_Male', 'Married_Yes', 'Education_Not Graduate', 'Self_Employed_Yes', 'Credit_History_1.0',
+            'Loan_Status_Y']
+    vals = [[user_data['dependents'],
+             user_data['applicant_income'],
+             user_data['coapplicant_income'],
+             user_data['loan_amount'],
+             user_data['loan_amount_term'],
+             user_data['property_area'],
+             1 if user_data['gender'] == 'Male' else 0,
+             1 if user_data['married'] == 'Yes' else 0,
+             0 if user_data['education'] == 'Graduate' else 1,
+             1 if user_data['self_employed'] == 'Yes' else 0,
+             1 if user_data['credit_history'] == 'Yes' else 0,
+             'plug']]
+    sample = pd.DataFrame(vals, columns=cols)
+    sample_tomodel = fitted_ohe_loaded.transform(sample)[0][:-1].reshape(1, -1)
+    thresh = 0.55
+    y_pred_test_thresh = logreg_clf_loaded.predict_proba(sample_tomodel)[:, 1]
+    print("y_pred_test_thresh: ", y_pred_test_thresh)
+    y_pred = (y_pred_test_thresh > thresh).astype(int)
+    return y_pred[0]
 
 @app.route("/", methods = ['GET'])
 def root():
@@ -39,13 +59,13 @@ def register():
     form = SignUpForm()
     if form.validate_on_submit():
         to_predict_list = request.form.to_dict()
-        to_predict_list = list(to_predict_list.values())
-        to_predict_list = to_predict_list[3:-2]
-        #to_predict_list = list(map(int, to_predict_list))
-        loan_status_result = LoanPredictor(to_predict_list)
+        print("to_predict_list: ", to_predict_list)
+        loan_status_result = FittingData(to_predict_list)
         if int(loan_status_result) == 1:
+            loan_status_result = 'Yes'
             prediction = 'Loan is approved'
         else:
+            loan_status_result = 'No'
             prediction = 'Loan is not approved'
         customer = ormCustomer(gender=form.gender.data,
                                married=form.married.data,
