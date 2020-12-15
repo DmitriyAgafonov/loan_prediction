@@ -6,8 +6,8 @@ services:
     build: .
     ports:
       - "5000:5000"
-   #links:
-   #  - postgres:postgres
+    depends_on:
+      - db
     volumes:
       - web-data:/usr/src/app/static
     command: /usr/local/bin/gunicorn -w 2 -b :5000 main:app
@@ -22,6 +22,10 @@ services:
       - db-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
 
 volumes:
   db-data:
