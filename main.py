@@ -5,23 +5,20 @@ import pickle
 
 
 from flask import Flask, redirect, url_for, request, session, render_template, flash
+from flask_restful import Resource, Api
 from forms.forms import SignUpForm
 
 from dao.db_connection import PostgreDb
 from dao.db_model import *
 from forms.forms import SignUpForm
 
-
-#from sqlalchemy import create_engine
-#from sqlalchemy.orm import sessionmaker
-#from sqlalchemy.sql import exists, extract, func, update
-#from setup import user_database, todolist
 #import plotly
 #import plotly.graph_objs as go
 #import json
 
 app = Flask(__name__)
-app.secret_key = 'development key'
+app.secret_key = 'development-key'
+api = Api(app)
 db = PostgreDb()
 
 def FittingData(user_data):
@@ -93,4 +90,4 @@ def customer_table():
     return render_template('customers.html', customers=result)
 
 if __name__ == "__main__":
-        app.run(debug=True, threaded=True)
+        app.run(host='0.0.0.0', debug=True, threaded=True)

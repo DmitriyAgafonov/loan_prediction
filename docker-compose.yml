@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  web:
+    restart: always
+    build: .
+    ports:
+      - "5000:5000"
+   #links:
+   #  - postgres:postgres
+    volumes:
+      - web-data:/usr/src/app/static
+    command: /usr/local/bin/gunicorn -w 2 -b :5000 main:app
+
+  db:
+    restart: always
+    image: postgres:latest
+    command: ["postgres", "-c", "log_statement=all", "-c", "log_destination=stderr"]
+    env_file:
+      - database.env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  db-data:
+  web-data:
