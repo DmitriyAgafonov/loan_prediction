@@ -20,164 +20,23 @@
     <form method = "POST" action = "">
         {{ form.hidden_tag() }}
         <fieldset class = "form-group">
-            <legend class = "border-bottom mb-4">To get your personal loan prediction input your information!</legend>
-            <div class = "form-group">
-              {{ form.gender.label(class = "form-control-label") }}
-
-                {% if form.gender.errors %}
-                     {{ form.gender(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.gender.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.gender(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.married.label(class = "form-control-label") }}
-                {% if form.married.errors %}
-                     {{ form.married(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.married.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.married(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.dependents.label(class = "form-control-label") }}
-                {% if form.dependents.errors %}
-                     {{ form.dependents(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.dependents.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.dependents(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.education.label(class = "form-control-label") }}
-                {% if form.education.errors %}
-                     {{ form.education(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.education.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.education(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.self_employed.label(class = "form-control-label") }}
-                {% if form.self_employed.errors %}
-                     {{ form.self_employed(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.self_employed.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.self_employed(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.applicant_income.label(class = "form-control-label") }}
-                {% if form.applicant_income.errors %}
-                     {{ form.applicant_income(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.applicant_income.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.applicant_income(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.coapplicant_income.label(class = "form-control-label") }}
-                {% if form.coapplicant_income.errors %}
-                     {{ form.coapplicant_income(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.coapplicant_income.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.coapplicant_income(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.loan_amount.label(class = "form-control-label") }}
-                {% if form.loan_amount.errors %}
-                     {{ form.loan_amount(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.loan_amount.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.loan_amount(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.loan_amount_term.label(class = "form-control-label") }}
-                {% if form.loan_amount_term.errors %}
-                     {{ form.loan_amount_term(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.loan_amount_term.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.loan_amount_term(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.credit_history.label(class = "form-control-label") }}
-                {% if form.credit_history.errors %}
-                     {{ form.credit_history(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.credit_history.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.credit_history(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-group">
-                {{ form.property_area.label(class = "form-control-label") }}
-                {% if form.property_area.errors %}
-                     {{ form.property_area(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.property_area.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.property_area(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
-            <div class = "form-check">
-                {{ form.agreement.label(class = "form-check-input") }}
-                {% if form.agreement.errors %}
-                     {{ form.agreement(class = "form-control form-control-lg is-invalid") }}
-                        <div class = "invalid-feedback">
-                            {% for errors in form.agreement.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                {% else %}
-                    {{ form.agreement(class = "form-control form-control=lg") }}
-                {% endif %}
-            </div>
+            <legend class = "border-bottom mb-4">Для отримання результату введіть наступну інформацію:</legend>
+            {{ form.hidden_tag() }}
+            <dl>
+                {% for field in form if field.widget.input_type != 'hidden' and field.type != 'SubmitField' %}
+                    <dt> {{ field.label }}
+                    {{ field }}
+                    <dd>
+                    {% if field.errors %}
+                        <ul class=errors>
+                             {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                             {% endfor %}
+                         </ul>
+                   {% endif %}
+                    </dd>
+                {% endfor %}
+            </dl>
         </fieldset>
         <div class = "form-group">
             {{ form.submit(class = "btn btn-outline-info") }}
