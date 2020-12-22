@@ -15,7 +15,7 @@ class SignUpForm(FlaskForm):
                           validators=[DataRequired("Please enter your marriage status.")])
 
     dependents = SelectField("Dependents: ",
-                            choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3', '3+')],
+                            choices=[('0', '0'), ('1', '1'), ('2', '2'), ('3+', '3+')],
                             validators=[DataRequired("Please enter your dependents.")])
 
     education = SelectField("Education: ",
