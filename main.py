@@ -37,13 +37,12 @@ def FittingData(user_data):
              1 if user_data['married'] == 'Yes' else 0,
              0 if user_data['education'] == 'Graduate' else 1,
              1 if user_data['self_employed'] == 'Yes' else 0,
-             1 if user_data['credit_history'] == 'Yes' else 0,
+             int(user_data['credit_history']),
              'plug']]
     sample = pd.DataFrame(vals, columns=cols)
     sample_tomodel = fitted_ohe_loaded.transform(sample)[0][:-1].reshape(1, -1)
     thresh = 0.55
     y_pred_test_thresh = logreg_clf_loaded.predict_proba(sample_tomodel)[:, 1]
-    print("y_pred_test_thresh: ", y_pred_test_thresh)
     y_pred = (y_pred_test_thresh > thresh).astype(int)
     return y_pred[0]
 
@@ -56,7 +55,6 @@ def register():
     form = SignUpForm()
     if form.validate_on_submit():
         to_predict_list = request.form.to_dict()
-        print("to_predict_list: ", to_predict_list)
         loan_status_result = FittingData(to_predict_list)
         if int(loan_status_result) == 1:
             loan_status_result = 'Yes'
