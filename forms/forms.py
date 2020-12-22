@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, HiddenField, SelectField, BooleanField
+from wtforms import StringField, SubmitField, HiddenField, SelectField, BooleanField, PasswordField
 from wtforms.validators import InputRequired, Regexp
 
-class SignUpForm(FlaskForm):
+class UserInputForm(FlaskForm):
 
     loan_id = HiddenField()
 

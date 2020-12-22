@@ -6,11 +6,11 @@ import pickle
 
 from flask import Flask, redirect, url_for, request, session, render_template, flash
 from flask_restful import Resource, Api
-from forms.forms import SignUpForm
+#from forms.forms import SignUpForm
 
 from dao.db_connection import PostgreDb
 from dao.db_model import *
-from forms.forms import SignUpForm
+from forms.forms import UserInputForm
 
 #import plotly
 #import plotly.graph_objs as go
@@ -52,7 +52,7 @@ def root():
     
 @app.route('/registration', methods=["GET", "POST"])
 def register():
-    form = SignUpForm()
+    form = UserInputForm()
     if form.validate_on_submit():
         to_predict_list = request.form.to_dict()
         loan_status_result = FittingData(to_predict_list)
