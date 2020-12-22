@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, HiddenField, SelectField, BooleanField, PasswordField
-from wtforms.validators import InputRequired, Regexp
+from wtforms.validators import InputRequired, Regexp, Length, EqualTo
 
 class UserInputForm(FlaskForm):
 
@@ -56,3 +56,19 @@ class UserInputForm(FlaskForm):
     loan_status = HiddenField()
 
     submit = SubmitField("Submit")
+
+class SignUpForm(FlaskForm):
+    user_id = HiddenField()
+
+    username = StringField("Username: ",
+                           validators=[InputRequired("Username required"),
+                                       Length(min=4, max=25, message="Username must be between 4 and 25 characters")])
+
+    password = PasswordField("Password: ",
+                             validators=[InputRequired("Password required"),
+                                         Length(min=4, max=25, message="Password must be between 4 and 25 characters")])
+
+    confirm_password = PasswordField("Password confirmation: ",
+                                     validators=[InputRequired("Confirm your password"),
+                                                 EqualTo('password', message="Passwords must match")])
+    submit_btn = SubmitField("Sign in!")

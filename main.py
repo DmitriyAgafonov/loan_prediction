@@ -6,11 +6,10 @@ import pickle
 
 from flask import Flask, redirect, url_for, request, session, render_template, flash
 from flask_restful import Resource, Api
-#from forms.forms import SignUpForm
 
 from dao.db_connection import PostgreDb
 from dao.db_model import *
-from forms.forms import UserInputForm
+from forms.forms import UserInputForm, SignUpForm
 
 #import plotly
 #import plotly.graph_objs as go
@@ -50,8 +49,8 @@ def FittingData(user_data):
 def root():
     return render_template('index.html')
     
-@app.route('/registration', methods=["GET", "POST"])
-def register():
+@app.route('/personal_prediction', methods=["GET", "POST"])
+def userPrediction():
     form = UserInputForm()
     if form.validate_on_submit():
         to_predict_list = request.form.to_dict()
@@ -80,7 +79,7 @@ def register():
         db.sqlalchemy_session.add(customer)
         db.sqlalchemy_session.commit()
         return redirect(url_for('root'))
-    return render_template('registration.html', form=form)
+    return render_template('main_page.html', form=form)
 
 @app.route('/customers', methods=['GET', 'POST'])
 def customer_table():
