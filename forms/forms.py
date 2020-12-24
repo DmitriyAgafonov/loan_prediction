@@ -28,15 +28,15 @@ class UserInputForm(FlaskForm):
 
     applicant_income = StringField("Applicant income: ",
                                    validators=[InputRequired("Please enter your applicant income."),
-                                               Regexp(regex='^\d+.*\d+$', message='Input decimal number')])
+                                               Regexp(regex='^\d*.\d*$', message='Input decimal number')])
 
     coapplicant_income = StringField("Co-applicant income: ",
                                      validators=[InputRequired("Please enter your co-applicant income."),
-                                                 Regexp(regex='^\d+.*\d+$', message='Input decimal number')])
+                                                 Regexp(regex='^\d*.\d*$', message='Input decimal number')])
 
     loan_amount = StringField("Loan amount (in thousands): ",
                               validators=[InputRequired("Please enter your loan amount."),
-                                          Regexp(regex='^\d+.*\d+$', message='Input decimal number')])
+                                          Regexp(regex='^\d*.\d*$', message='Input decimal number')])
 
     loan_amount_term = StringField("Loan amount term (in months): ",
                                    validators=[InputRequired("Please enter your loan amount."),
